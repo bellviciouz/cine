@@ -1,14 +1,22 @@
 // Ionic Starter App
 
+//Instancia de base de datos
+var db;
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+
+
+
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services' , 'ngCordova' ])
+
+.run(function($ionicPlatform,$cordovaSQLite,$ionicLoading) {
   $ionicPlatform.ready(function() {
+       $ionicLoading.show({ template: 'Loading...' });
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
     if (window.cordova && window.cordova.plugins && window.cordova.plugins.Keyboard) {
@@ -18,9 +26,32 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     }
     if (window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      StatusBar.styleLightContent();
     }
+    
+    
+  //aqui empieza mi codigo
+
+
+if(window.cordova) {
+      // App syntax
+      db = $cordovaSQLite.openDB("pelicula.db");
+      $ionicLoading.hide();
+    } else {
+      // Ionic serve syntax
+      db = window.openDatabase("pelicula.db", "1", "My app", -1);
+      $ionicLoading.hide();
+    }
+    
+    
+    
+$cordovaSQLite.execute(db, 'CREATE TABLE IF NOT EXISTS peliculas (id INTEGER PRIMARY KEY AUTOINCREMENT, nombre varchar(255), ano varchar(255), genero varchar(255), sinopsis varchar(255), actores varchar(255))');
+    
+      
   });
+  
+
+  
 })
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -83,3 +114,5 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   $urlRouterProvider.otherwise('/tab/dash');
 
 });
+
+

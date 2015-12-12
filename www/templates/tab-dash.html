@@ -1,28 +1,47 @@
-<ion-view view-title="Dashboard">
+<ion-view view-title="Agregar contacto">
   <ion-content class="padding">
-    <div class="list card">
-      <div class="item item-divider">Recent Updates</div>
-      <div class="item item-body">
-        <div>
-          There is a fire in <b>sector 3</b>
-        </div>
-      </div>
+  
+    <form name="form1" novalidate>
+    <div class="padding">
+        <label class="item item-input">
+            <span class="input-label">Nombre</span>
+            <input type="text" name="nombre" ng-model="pelicula.nombre" required>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Año</span>
+            <input type="text" name="ano" ng-model="pelicula.ano" required>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Genero</span>
+            <input type="text" name="genero" ng-model="pelicula.genero" required>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Sinopsis</span>
+            <input type="text" name="sinopsis" ng-model="pelicula.sinopsis" required>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Actores</span>
+            <input type="text" name="actores" ng-model="pelicula.actores" required>
+        </label>
     </div>
-    <div class="list card">
-      <div class="item item-divider">Health</div>
-      <div class="item item-body">
-        <div>
-          You ate an apple today!
-        </div>
-      </div>
+    
+    <div class="padding">
+        <p ng-show="form1.nombre.$error.required"> Escriba el nombre</p>
+        <p ng-show="form1.ano.$error.required"> Escriba el ano</p>
+        <p ng-show="form1.genero.$error.required"> Escriba el genero</p>
+        <p ng-show="form1.sinopsis.$error.required"> Escriba el sinopsis</p>
+        <p ng-show="form1.actores.$error.required"> Escriba el actores</p>
     </div>
-    <div class="list card">
-      <div class="item item-divider">Upcoming</div>
-      <div class="item item-body">
-        <div>
-          You have <b>29</b> meetings on your calendar tomorrow.
-        </div>
-      </div>
-    </div>
+    
+    
+    <!--esto estaba antes en el boton-->
+   <!-- ng-click="showAlert()"-->
+    
+    <button class= "button button-full button-positive"   ng-disabled="form1.$invalid" ng-click="guardar(pelicula)">
+            Guardar
+        </button>
+        <p>{{ statusMessage }}</p>
+    </form>
+     
   </ion-content>
 </ion-view>

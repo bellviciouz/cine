@@ -1,14 +1,68 @@
-<!--
-  This template loads for the 'tab.friend-detail' state (app.js)
-  'friend' is a $scope variable created in the FriendsCtrl controller (controllers.js)
-  The FriendsCtrl pulls data from the Friends service (service.js)
-  The Friends service returns an array of friend data
--->
-<ion-view view-title="{{chat.name}}">
-  <ion-content class="padding">
-    <img ng-src="{{chat.face}}" style="width: 64px; height: 64px">
-    <p>
-      {{chat.lastText}}
-    </p>
+
+<ion-view view-title="{{pelicula[0].nombre}}">
+ 
+ 
+ <ion-content class="padding">
+  
+    <form name="form1" novalidate>
+    <div class="padding">
+        <label class="item item-input">
+            <span class="input-label">Nombre</span>
+            <input type="text" name="nombre" ng-model="pelicula[0].nombre" required >
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Ano</span>
+            <input type="text" name="ano" ng-model="pelicula[0].ano" required>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Genero</span>
+            <input type="tel" name="genero" ng-model="pelicula[0].genero" required>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Sinopsis</span>
+            <input type="text" name="sinopsis" ng-model="pelicula[0].sinopsis" required>
+        </label>
+        <label class="item item-input">
+            <span class="input-label">Actores</span>
+            <input type="text" name="actores" ng-model="pelicula[0].actores" required>
+        </label>
+    </div>
+    
+    <div class="padding">
+        <p ng-show="form1.nombre.$error.required"> Escriba el nombre</p>
+        <p ng-show="form1.ano.$error.required"> Escriba el año</p>
+        <p ng-show="form1.genero.$error.required"> Escriba el genero</p>
+        <p ng-show="form1.sompsis.$error.required"> Escriba la sinopsis</p>
+        <p ng-show="form1.actores.$error.required"> Escriba los actores</p>
+        
+    </div>
+    <input type="hidden" name="id" ng-model="pelicula[0].id">
+    
+    <!--esto estaba antes en el boton-->
+   <!-- ng-click="showAlert()"-->
+    
+    <button class= "button button-full button-positive"   ng-disabled="form1.$invalid" ng-click="guardar(pelicula[0])">
+            Guardar
+        </button>
+        <p>{{ statusMessage }}</p>
+    </form>
+     
   </ion-content>
+ 
+ 
+ 
+ 
+ <!-- <ion-content class="padding">
+    
+    <p>
+    {{chat[0].id}}
+      {{chat[0].apellido}}
+      {{chat[0].nombre}}
+      {{chat[0].email}}
+      {{chat[0].telefono}}
+      
+    </p>
+    <p>{{ statusMessage }}</p>
+  </ion-content>
+  -->
 </ion-view>
