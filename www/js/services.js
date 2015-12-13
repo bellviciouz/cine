@@ -70,10 +70,7 @@ return{
          
             
             
-        /*  var alertPopup = $ionicPopup.alert({
-       title: 'Agenda',
-       template: 'Datos almacenados'+chats[0].nombre
-     });*/
+ 
       statusMessage = chats[0].nombre;
             
         },
